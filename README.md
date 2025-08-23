@@ -1,18 +1,64 @@
 # Hugo Pages CMS Template
 
 ## Installation
-1. Add this repo as a submodule to your repository
-2. In your CI add `hugo -s <submodule>`
+1. Clone this repo into a folder with a name `layouts`, e.g. under folder `prebuild` this repo will be cloned to `layouts`
+2. In your CI add `hugo -s prebuild`
 3. Add this to your `hugo.yaml`:
 ```yaml
 modules:
     mounts:
     - source: content
       target: content
-    - source: <submodule>/public/src
+    - source: prebuild/public/src
       target: content
 ```
-4. Add the `.pages.yml` file for Pages CMS
+4. Configuration:
+<details>
+<summary>prebuild/config.yml</summary>
+
+```yaml
+disableKinds:
+- sitemap
+- taxonomy
+- term
+outputs:
+  home:
+  - html
+
+security:
+  funcs:
+    os: [ "os.Stat" ]
+
+# Optional
+params:
+  displayUpdatedDate: true
+  editURL:
+    enable: true
+    base: "https://app.pagescms.org/amblelabs/ait-wiki/main/collection/wiki/edit/prebuild"
+    sep: "%2F"
+```
+
+</details>
+
+<details>
+<summary>prebuild/.gitignore</summary>
+
+```gitignore
+# Hugo output
+public/
+resources/
+.hugo_build.lock
+
+# Editor
+#.vscode/
+.direnv
+
+.idea/
+```
+
+</details>
+
+5. Add the `.pages.yml` file for Pages CMS
 <details>
 <summary>Example Configuration</summary>
 
@@ -215,6 +261,8 @@ components:
 ```
 
 </details>
+
+6. Post your content under `prebuild/src/` with a `.yaml` extension!
 
 ## Extra Bits for Hextra
 <details>
