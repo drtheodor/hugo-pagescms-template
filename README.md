@@ -2,14 +2,14 @@
 
 ## Installation
 1. Add this repo as a submodule to your repository
-2. In your CI add `hugo -s <submodule dir>`
+2. In your CI add `hugo -s <submodule>`
 3. Add this to your `hugo.yaml`:
 ```yaml
 modules:
     mounts:
     - source: content
       target: content
-    - source: prebuild/public/src
+    - source: <submodule>/public/src
       target: content
 ```
 4. Add the `.pages.yml` file for Pages CMS
@@ -25,20 +25,6 @@ settings:
   content:
     merge: true
 content:
-  - name: old
-    label: Old
-    type: collection
-    path: content
-    filename: "{primary}.md"
-    view:
-      fields: [ title ]
-    fields:
-      - { name: title, label: Title, type: string, required: true }
-      - { name: description, label: Description, type: string }
-      - name: body
-        label: Plain Body
-        description: Do NOT use. This exists only for the sole purpose of editing old (pre-CMS) wiki content.
-        type: rich-text
   - name: wiki
     label: Wiki
     type: collection
