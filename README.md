@@ -215,3 +215,24 @@ components:
 ```
 
 </details>
+
+## Extra Bits for Hextra
+<details>
+<summary>layouts/_partials/components/last-updated.html</summary>
+
+```gotmpl
+{{- $lastUpdated := (T "lastUpdated") | default "Last updated on" -}}
+
+{{- if site.Params.displayUpdatedDate -}}
+    {{- with (.Lastmod | default .Params.lastUpdated) -}}
+        {{ $datetime := (time.Format "2006-01-02T15:04:05.000Z" .) }}
+        <div class="hx:mt-12 hx:mb-8 hx:block hx:text-xs hx:text-gray-500 hx:ltr:text-right hx:rtl:text-left hx:dark:text-gray-400">{{ $lastUpdated }} <time datetime="{{ $datetime }}">{{ partial "utils/format-date" . }}</time></div>
+    {{- else -}}
+        <div class="hx:mt-16"></div>
+    {{- end -}}
+{{- else -}}
+  <div class="hx:mt-16"></div>
+{{- end -}}
+```
+
+</details>
