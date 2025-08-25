@@ -1,9 +1,18 @@
 # Hugo Pages CMS Template
 
 ## Installation
-1. Clone this repo into a folder with a name `layouts`, e.g. under folder `prebuild` this repo will be cloned to `layouts`
-2. In your CI add `hugo -s prebuild`
-3. Add this to your `hugo.yaml`:
+1. Add this repo into a folder with a name `layouts`, e.g. under folder `prebuild` this repo will be cloned to `layouts`:
+```bash
+git submodule add https://github.com/drtheodor/hugo-pagescms-template.git prebuild/layouts
+```
+3. In your CI add `hugo -s prebuild` and make sure that checkout includes submodules:
+```yaml
+- name: Checkout repository
+  uses: actions/checkout@v4
+  with:
+    submodules: recursive
+```
+5. Add this to your `hugo.yaml`:
 ```yaml
 modules:
     mounts:
