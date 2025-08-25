@@ -1,7 +1,7 @@
 {{- if eq ._type "text" -}}
     {{- .value | safeHTML -}}
 {{- else if eq ._type "local-image" -}}
-    ![{{ .alt }}]({{ .src }})
+    ![{{ .alt }}]({{ .src }} "{{ .caption | safeHTML }}")
 {{- else if eq ._type "callout" -}}
     {{- $content := .value | safeHTML -}}
 
