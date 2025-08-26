@@ -1,4 +1,5 @@
 {{- $rendered := partial "cms/render-all.html" .blocks -}}
+{{- $rendered = replaceRE `\n\s*?\n` "\n" $rendered -}}
 
 {{- $ls := newScratch -}}
 {{- $ls.Set "meta" . -}}

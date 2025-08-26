@@ -29,7 +29,7 @@
 
     {{- $dir := path.Dir $filePath -}}
 
-    {{- $fileName := printf "%s%s" (path.BaseName $filePath) ".md" -}}
+    {{- $fileName := $data.filename | default (printf "%s%s" (path.BaseName $filePath) ".md") -}}
     {{- $outputFile := urls.JoinPath $dir $fileName -}}
 
     {{- $resource := resources.FromString $outputFile $renderedContent -}} 
